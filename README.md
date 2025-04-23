@@ -2,8 +2,6 @@
 <h1 align="center">Hi 👋, I'm Likheet</h1>
 <h3 align="center">A passionate Web Developer from RVITM</h3>
 
-<p align="left"> <a href="https://twitter.com/likheet_shetty" target="blank"><img src="https://img.shields.io/twitter/follow/likheet_shetty?logo=twitter&style=for-the-badge" alt="likheet_shetty" /></a> </p>
-
 - 🔭 I’m currently working on [Automate Me](https://github.com/Likheet/automate-me.git)
 
 - 🌱 I’m currently learning **Data Structures & Algorithms**

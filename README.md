@@ -1,6 +1,5 @@
 [![MasterHead](https://upload.wikimedia.org/wikipedia/commons/7/7e/Knowledge_Is_Human_Homepage_Animated_Banner.gif)](https://www.linkedin.com/in/likheet/)
 <h1 align="center">Hi 👋, I'm Likheet</h1>
-<h3 align="center">A passionate Web Developer from RVITM</h3>
 
 - 🔭 I’m currently working on [Automate Me](https://github.com/Likheet/automate-me.git)
 

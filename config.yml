@@ -1,0 +1,53 @@
+username: Likheet
+
+profile:
+  name: "Likheet Shetty"
+  tagline: "Native apps, AI tools and browser extensions"
+  philosophy: "Master of IT at UNSW, Sydney"
+
+galaxy_arms:
+  - name: "Native apps"
+    items: ["Rust", "Kotlin", "Swift", "C++"]
+    repos: ["YTFast"]
+  - name: "AI and research"
+    items: ["Python", "Jupyter Notebook"]
+    repos:
+      - "tokenizer-lab"
+      - "indic-tokenizer-paper"
+      - "Nucleus-AI"
+      - "automated-investment-analysis"
+      - "KaroStartup_Project2"
+      - "Fraud-Detection-ML"
+  - name: "Browser extensions"
+    items: ["Chrome", "Manifest V3", "Gemini API"]
+    repos: ["draftcue", "Youtube-ify", "prompt-enhancer-extension", "gemini-watermark-remover"]
+  - name: "Web and products"
+    items: ["TypeScript", "JavaScript", "HTML", "CSS"]
+
+projects:
+  - repo: "Likheet/YTFast"
+    description: "YouTube Music as a fast, native desktop app for Windows and Mac."
+  - repo: "Likheet/tokenizer-lab"
+    description: "See how multilingual and frontier LLM tokenizers split the same text."
+  - repo: "Likheet/hermes-monitoring"
+    description: "Operations app for a resort team: tasks, shifts and maintenance."
+    arm: 3
+
+theme:
+  dark: "deep-sky"
+  light: "cyanotype"
+
+motion: true
+
+stats:
+  metrics: ["commits", "prs", "stars"]
+
+languages:
+  exclude: ["HTML", "CSS", "Shell", "Makefile", "PowerShell", "Batchfile"]
+  max_display: 8
+
+# Not part of galaxy-profile: settings for the open-source plate (extras/opensource.py).
+open_source:
+  min_stars: 500                 # leave out pull requests to smaller projects
+  exclude: ["is-a-dev/register"] # domain registrations, not code
+  limit: 6

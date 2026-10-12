@@ -2,7 +2,7 @@ name: Update profile
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "17 */6 * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -18,21 +18,34 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v7
+      - uses: actions/setup-python@v7
         with:
-          node-version: 22
+          python-version: "3.12"
 
-      - name: Build the images
-        run: node scripts/build.mjs
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Draw the images
+        run: python -m extras.build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OUT_DIR: dist
 
-      # The images live on a branch with one commit, so the history does not grow every 15 minutes.
+      # GitHub's own gh-skyline extension turns this year's contributions into a 3D model.
+      # GitHub shows .stl files in an interactive 3D viewer. If this step fails, the rest still publishes.
+      - name: Build the 3D skyline
+        continue-on-error: true
+        run: |
+          gh extension install github/gh-skyline
+          gh skyline --user "${GITHUB_REPOSITORY_OWNER}" --output dist/skyline.stl
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # The images live on a branch with one commit, so the history does not grow with every run.
       - name: Publish to the output branch
         working-directory: dist
         run: |

@@ -1,0 +1,293 @@
+{
+  "login": "Likheet",
+  "outputBranch": "output",
+  "location": {
+    "name": "Sydney",
+    "latitude": -33.87,
+    "longitude": 151.21,
+    "timezone": "Australia/Sydney"
+  },
+  "activeWithinHours": 3,
+  "openSource": {
+    "repos": [
+      "emilk/egui",
+      "axios/axios",
+      "foliojs/fontkit",
+      "SchemaStore/schemastore"
+    ]
+  },
+  "groups": [
+    {
+      "id": "shipping",
+      "title": "Shipping now",
+      "cards": [
+        {
+          "slug": "ytfast",
+          "title": "YTFast",
+          "repo": "YTFast",
+          "icon": "play",
+          "accent": "#ff4e45",
+          "tagline": "YouTube Music as a fast, native desktop app for Windows and Mac.",
+          "tech": [
+            "Rust",
+            "Windows",
+            "macOS"
+          ],
+          "cta": "download"
+        },
+        {
+          "slug": "life-ledger",
+          "title": "Life Ledger",
+          "link": "https://life-ledger.tech",
+          "icon": "leaf",
+          "accent": "#22c55e",
+          "tagline": "Tasks, goals, meals and money in one app. Its assistant turns what you say into entries.",
+          "tech": [
+            "React Native",
+            "Expo",
+            "AI"
+          ],
+          "cta": "public beta"
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "AI and research",
+      "cards": [
+        {
+          "slug": "tokenizer-lab",
+          "title": "Tokenizer Lab",
+          "repo": "tokenizer-lab",
+          "icon": "spark",
+          "accent": "#8b5cf6",
+          "tagline": "See how multilingual and frontier LLM tokenizers split the same text, side by side.",
+          "tech": [
+            "React",
+            "TypeScript",
+            "LLMs"
+          ]
+        },
+        {
+          "slug": "tokenizer-paper",
+          "title": "Tokenizer benchmark",
+          "repo": "indic-tokenizer-paper",
+          "icon": "doc",
+          "accent": "#8b5cf6",
+          "tagline": "Paper: how LLM tokenizers handle Hindi, Kannada, Tamil and Hinglish text.",
+          "tech": [
+            "Python",
+            "NLP",
+            "Paper"
+          ],
+          "cta": "read the paper"
+        },
+        {
+          "slug": "nucleus-ai",
+          "title": "Nucleus AI",
+          "repo": "Nucleus-AI",
+          "icon": "chat",
+          "accent": "#8b5cf6",
+          "tagline": "Grounded assistant for the UNSW Student Hub. It answers from official pages and cites them.",
+          "tech": [
+            "Python",
+            "RAG",
+            "LLMs"
+          ]
+        },
+        {
+          "slug": "investanalyzer",
+          "title": "InvestAnalyzer",
+          "repo": "automated-investment-analysis",
+          "icon": "chart",
+          "accent": "#8b5cf6",
+          "tagline": "Reads a startup pitch deck and writes a structured investment thesis.",
+          "tech": [
+            "TypeScript",
+            "LLMs"
+          ]
+        },
+        {
+          "slug": "autolysis",
+          "title": "Autolysis",
+          "repo": "KaroStartup_Project2",
+          "icon": "bars",
+          "accent": "#8b5cf6",
+          "tagline": "Automated data analysis, from a raw dataset to charts and insights.",
+          "tech": [
+            "Python",
+            "pandas"
+          ]
+        },
+        {
+          "slug": "fraud-detection",
+          "title": "Fraud detection",
+          "repo": "Fraud-Detection-ML",
+          "icon": "shield",
+          "accent": "#8b5cf6",
+          "tagline": "Machine-learning model that flags fraudulent credit card transactions.",
+          "tech": [
+            "Python",
+            "Jupyter",
+            "ML"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "extensions",
+      "title": "Browser extensions",
+      "cards": [
+        {
+          "slug": "draftcue",
+          "title": "DraftCue",
+          "repo": "draftcue",
+          "icon": "pen",
+          "accent": "#3b82f6",
+          "tagline": "Select your shorthand, press a shortcut, and get a polished email. Powered by Gemini.",
+          "tech": [
+            "Chrome",
+            "Edge",
+            "Gemini"
+          ]
+        },
+        {
+          "slug": "youtube-ify",
+          "title": "YouTube-ify",
+          "repo": "Youtube-ify",
+          "icon": "screen",
+          "accent": "#3b82f6",
+          "tagline": "YouTube-style shortcuts, cinema mode and true fullscreen for any HTML5 video.",
+          "tech": [
+            "Chrome",
+            "Manifest V3"
+          ]
+        },
+        {
+          "slug": "prompt-enhancer",
+          "title": "Prompt Enhancer",
+          "repo": "prompt-enhancer-extension",
+          "icon": "wand",
+          "accent": "#3b82f6",
+          "tagline": "Improves your AI prompts in place, using the context of the chat.",
+          "tech": [
+            "Chrome",
+            "Gemini"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "client",
+      "title": "Client work",
+      "cards": [
+        {
+          "slug": "hermes-ops",
+          "title": "Hermes resort ops",
+          "repo": "hermes-monitoring",
+          "icon": "building",
+          "accent": "#f59e0b",
+          "tagline": "Tasks, shifts, maintenance and supervisor checks for every role on a resort team.",
+          "tech": [
+            "Next.js",
+            "Supabase"
+          ]
+        },
+        {
+          "slug": "aetheria",
+          "title": "Aetheria consult",
+          "repo": "aetheria-customer-forms",
+          "icon": "clipboard",
+          "accent": "#f59e0b",
+          "tagline": "Skin clinic consultation flow, driven by a decision tree and tested end to end.",
+          "tech": [
+            "React",
+            "Supabase",
+            "Vitest"
+          ]
+        },
+        {
+          "slug": "galaxy-menu",
+          "title": "Galaxy Club menu",
+          "repo": "galaxy-menu",
+          "icon": "menu",
+          "accent": "#f59e0b",
+          "tagline": "Digital menu website for Galaxy Club and Hotel.",
+          "tech": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "playground",
+      "title": "Playground",
+      "cards": [
+        {
+          "slug": "stack-it",
+          "title": "Stack-It!",
+          "repo": "stack-game",
+          "icon": "cube",
+          "accent": "#14b8a6",
+          "tagline": "Stack the blocks as high as you can. 3D physics in the browser.",
+          "tech": [
+            "Three.js",
+            "Cannon.js"
+          ]
+        },
+        {
+          "slug": "pathfinding",
+          "title": "Pathfinding visualizer",
+          "repo": "pathfinding-algorithm",
+          "icon": "grid",
+          "accent": "#14b8a6",
+          "tagline": "Watch A*, Dijkstra, BFS and DFS find their way across a grid.",
+          "tech": [
+            "JavaScript",
+            "Algorithms"
+          ]
+        },
+        {
+          "slug": "spooky-time-machine",
+          "title": "Spooky Time Machine",
+          "repo": "spooky-time-machine",
+          "icon": "ghost",
+          "accent": "#14b8a6",
+          "tagline": "Pick a place and a year. AI writes and draws a spooky scene from that moment.",
+          "tech": [
+            "React",
+            "Three.js",
+            "Gemini"
+          ]
+        },
+        {
+          "slug": "bonfire",
+          "title": "Bonfire",
+          "repo": "bonfire",
+          "icon": "flame",
+          "accent": "#14b8a6",
+          "tagline": "Discord clone with servers, channels, chat, and audio and video calls.",
+          "tech": [
+            "Next.js",
+            "Prisma",
+            "LiveKit"
+          ]
+        },
+        {
+          "slug": "sky-prophet",
+          "title": "Sky Prophet",
+          "repo": "Sky-Prophet",
+          "icon": "cloud",
+          "accent": "#14b8a6",
+          "tagline": "Weather app and installable PWA, built on the OpenWeather API.",
+          "tech": [
+            "JavaScript",
+            "PWA"
+          ]
+        }
+      ]
+    }
+  ]
+}

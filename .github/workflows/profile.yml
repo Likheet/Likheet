@@ -35,16 +35,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OUT_DIR: dist
 
-      # GitHub's own gh-skyline extension turns this year's contributions into a 3D model.
-      # GitHub shows .stl files in an interactive 3D viewer. If this step fails, the rest still publishes.
-      - name: Build the 3D skyline
-        continue-on-error: true
-        run: |
-          gh extension install github/gh-skyline
-          gh skyline --user "${GITHUB_REPOSITORY_OWNER}" --output dist/skyline.stl
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       # The images live on a branch with one commit, so the history does not grow with every run.
       - name: Publish to the output branch
         working-directory: dist

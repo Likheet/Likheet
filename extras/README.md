@@ -11,7 +11,7 @@ GitHub shows `README.md` on my profile. A README cannot run code, but its images
 | Featured projects | The three projects in `config.yml` | galaxy-profile |
 | Open source | My pull requests to other projects and their status. A brighter star is a bigger project. | `extras/opensource.py` |
 | Languages | The languages of my public repositories and the stack of each focus area | galaxy-profile |
-| 3D skyline | This year's contributions as a 3D model, shown in GitHub's STL viewer | [gh-skyline](https://github.com/github/gh-skyline) |
+| 3D skyline | The last year of contributions as a 3D model: one block per active day. GitHub shows it in its STL viewer. | `extras/skyline.py`, after GitHub's [gh-skyline](https://github.com/github/gh-skyline) |
 
 Each image has four versions: dark, light, phone dark and phone light. The `<picture>` blocks in the README let the visitor's browser choose.
 
@@ -24,6 +24,7 @@ Each image has four versions: dark, light, phone dark and phone light. The `<pic
 | `extras/build.py` | Draws every image into `dist/` |
 | `extras/pulls.py` | Gets my pull requests to public projects |
 | `extras/opensource.py` | Draws the open-source plate with galaxy-profile's stars, type and motion |
+| `extras/skyline.py` | Writes the 3D skyline. It stays far below GitHub's 10 MB limit for the 3D viewer; gh-skyline's own models are about 25 MB. |
 | `.github/workflows/profile.yml` | Runs the build every 6 hours and puts the images on the `output` branch |
 
 ## Change the profile

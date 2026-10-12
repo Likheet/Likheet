@@ -25,7 +25,7 @@ from generator.main import run  # noqa: E402
 from generator.plates import VARIANTS  # noqa: E402
 from generator.themes import get_theme  # noqa: E402
 
-from extras import opensource, pulls  # noqa: E402
+from extras import opensource, pulls, skyline  # noqa: E402
 
 
 def main() -> None:
@@ -47,6 +47,11 @@ def main() -> None:
         (out / f"open-source{suffix}.svg").write_text(opensource.render(found, theme, mobile, config["motion"]),
                                                       encoding="utf-8")
     logging.info("Open source: %d pull requests drawn.", len(found))
+
+    triangles = skyline.build(skyline.fetch_weeks(config["username"], token))
+    model = skyline.to_stl(triangles, f"{config['username']} - a year of GitHub contributions")
+    (out / "skyline.stl").write_bytes(model)
+    logging.info("Skyline: %d triangles, %d KB.", len(triangles), len(model) // 1024)
 
 
 if __name__ == "__main__":

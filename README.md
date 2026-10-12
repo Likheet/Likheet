@@ -26,7 +26,7 @@
   </picture>
 </div>
 
-<p align="right"><sub><a href="https://github.com/Likheet/Likheet/blob/output/skyline.stl">Turn this year into a 3D skyline →</a></sub></p>
+<p align="right"><sub><a href="https://github.com/Likheet/Likheet/blob/output/skyline.stl">See my last year as a 3D skyline →</a></sub></p>
 
 <div align="center">
   <picture>

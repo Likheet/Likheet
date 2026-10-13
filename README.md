@@ -7,7 +7,7 @@ I build native apps, AI tools and browser extensions. I'm doing my Master of IT 
 [Portfolio](https://likheet.is-a.dev) · [LinkedIn](https://www.linkedin.com/in/likheet/) · [Kaggle](https://www.kaggle.com/likheet) · [Email](mailto:likheet.s@gmail.com)
 
 <!-- auto:stats -->
-**1,678** contributions · **109** pull requests · **33** public repositories  
+**1,680** contributions · **110** pull requests · **33** public repositories  
 Mostly TypeScript, JavaScript and Rust
 <!-- /auto:stats -->
 
@@ -60,7 +60,7 @@ Grounded chatbot for the UNSW Nucleus Student Hub. It answers only from official
 #### Open source
 
 <!-- auto:open-source -->
-Pull requests to projects with 156k stars between them.
+Pull requests to projects with 167k stars between them.
 
 **[axios/axios](https://github.com/axios/axios)** · ★ 109k  
 [fix(defaults): send only the viewed bytes of partial ArrayBuffer views](https://github.com/axios/axios/pull/11310) · in review
@@ -68,7 +68,10 @@ Pull requests to projects with 156k stars between them.
 **[emilk/egui](https://github.com/emilk/egui)** · ★ 31k  
 [Fix `Response::lost_focus` being `true` for two frames](https://github.com/emilk/egui/pull/8706) · in review
 
-**[prefix-dev/pixi](https://github.com/prefix-dev/pixi)** · ★ 7.8k  
+**[foliojs/pdfkit](https://github.com/foliojs/pdfkit)** · ★ 10k  
+[Align continued text with center or right alignment as one line](https://github.com/foliojs/pdfkit/pull/1816) · in review
+
+**[prefix-dev/pixi](https://github.com/prefix-dev/pixi)** · ★ 7.9k  
 [fix: support url sources in the lock file](https://github.com/prefix-dev/pixi/pull/7237) · in review
 
 **[SchemaStore/schemastore](https://github.com/SchemaStore/schemastore)** · ★ 3.9k  

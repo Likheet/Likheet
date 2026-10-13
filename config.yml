@@ -1,16 +1,15 @@
-# Settings for update.py, which fills in the generated parts of README.md every day.
+# Settings for build.py, which draws the profile's images every day from live GitHub data.
 username: Likheet
-
-stats:
-  ignore_languages: ["HTML", "CSS", "Shell", "Makefile", "PowerShell", "Batchfile", "Jupyter Notebook"]
+name: "Likheet Shetty"
+tagline: "Native apps, AI tools and browser extensions"
 
 projects:
-  limit: 6               # my most recently pushed public repositories; the rest go under "More projects"
+  limit: 5               # my most recently pushed public repositories, after the ones under `first`
   show_stars_from: 5     # smaller star counts are left out
-  first:                 # always at the top, for projects whose repositories are private
+  first:                 # always first, for projects whose repositories are private
     - name: "Life Ledger"
-      url: "https://life-ledger.tech"
       note: "Public beta"
+      link: "life-ledger.tech"
       description: "Tasks, goals, meals and money in one app, with an assistant that turns what you say into entries."
   exclude:               # repositories that are not projects of their own
     - ytmfast.com        # YTFast's website
@@ -25,7 +24,7 @@ projects:
 
 open_source:
   min_stars: 100         # leave out pull requests to smaller projects
-  limit: 8
+  limit: 8               # one mountain per project, biggest first
   exclude:
-    - is-a-dev/register                    # domain registration, not code
+    - is-a-dev/register                       # domain registration, not code
     - firstcontributions/first-contributions  # a tutorial

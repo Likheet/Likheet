@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -29,19 +29,24 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Fill in README.md
-        run: python update.py
+      - name: Draw the images
+        run: python build.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OUT_DIR: dist
 
-      # A push made with GITHUB_TOKEN does not start this workflow again.
-      - name: Commit README.md if it changed
+      # The images live on a branch with one commit, so the history does not grow with every run.
+      - name: Publish to the images branch
+        working-directory: dist
         run: |
-          git diff --quiet README.md && exit 0
+          git init -q -b images
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -q -m "Update README from GitHub data" README.md
-          git push -q
+          git add -A
+          git commit -q -m "Update profile images"
+          git push -q --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" images
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # GitHub turns off scheduled workflows after 60 days without repository activity.
       # Enabling the workflow again through the API resets that timer.

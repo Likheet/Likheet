@@ -7,7 +7,7 @@ I build native apps, AI tools and browser extensions. I'm doing my Master of IT 
 [Portfolio](https://likheet.is-a.dev) · [LinkedIn](https://www.linkedin.com/in/likheet/) · [Kaggle](https://www.kaggle.com/likheet) · [Email](mailto:likheet.s@gmail.com)
 
 <!-- auto:stats -->
-**1,677** contributions · **119** pull requests · **33** public repositories  
+**1,678** contributions · **109** pull requests · **33** public repositories  
 Mostly TypeScript, JavaScript and Rust
 <!-- /auto:stats -->
 
@@ -79,8 +79,8 @@ Pull requests to projects with 156k stars between them.
 
 **[foliojs/fontkit](https://github.com/foliojs/fontkit)** · ★ 1.7k  
 [Read hdmx device records at their padded size](https://github.com/foliojs/fontkit/pull/396) · merged  
-[Fix USE shaper crash on characters outside a syllable](https://github.com/foliojs/fontkit/pull/399) · in review  
-and 2 more
+[Fix repha, pre-base vowel and dotted circle placement in USE](https://github.com/foliojs/fontkit/pull/400) · in review  
+and 3 more
 
 **[devopness/devopness](https://github.com/devopness/devopness)** · ★ 568  
 [ci: Enable stale workflow for PRs to close abandoned pull requests](https://github.com/devopness/devopness/pull/1741) · merged

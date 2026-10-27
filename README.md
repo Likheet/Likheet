@@ -28,11 +28,3 @@
     </picture>
   </a>
 </div>
-
-<p align="center"><sub>
-  A frankenstein of the best profiles I could find: the terminal card after <a href="https://github.com/Andrew6rant">@Andrew6rant</a>,
-  the dithered portrait after <a href="https://github.com/0xharkirat/dither-portrait">dither-portrait</a> by <a href="https://github.com/0xharkirat">@0xharkirat</a>,
-  one card that says it all after <a href="https://github.com/terkelg">@terkelg</a>,
-  and lists that update themselves after <a href="https://github.com/simonw">@simonw</a> and <a href="https://github.com/tw93">@tw93</a>.
-  Redrawn every hour from live GitHub data.
-</sub></p>

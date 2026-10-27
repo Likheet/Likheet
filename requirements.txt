@@ -1,3 +1,4 @@
 requests==2.32.5
 pyyaml==6.0.3
 fonttools==4.62.1
+pillow==12.1.1

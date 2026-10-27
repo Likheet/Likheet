@@ -2,7 +2,7 @@
 
     GITHUB_TOKEN=$(gh auth token) python build.py
 
-The workflow runs it every day and on every push to main, and publishes the
+The workflow runs it every hour and on every push to main, and publishes the
 images to the `images` branch, where README.md points. README.md itself
 never changes. Any error stops the build, so the images of the last good run
 stay online.
@@ -10,30 +10,39 @@ stay online.
 
 from __future__ import annotations
 
+import base64
 import os
+from collections import Counter
 from dataclasses import dataclass
+from datetime import date
 from pathlib import Path
 
 import requests
 import yaml
+from PIL import Image
 
-from art import plates
+from art import cards, dither
 
 ROOT = Path(__file__).resolve().parent
 GRAPHQL = "https://api.github.com/graphql"
 
 QUERY = """query($login: String!, $prs: String!) {
   user(login: $login) {
+    createdAt
+    avatarUrl
     pullRequests { totalCount }
     contributionsCollection { contributionYears }
     repositories(ownerAffiliations: OWNER, privacy: PUBLIC, isFork: false, first: 100,
                  orderBy: {field: PUSHED_AT, direction: DESC}) {
       totalCount
-      nodes { name description stargazerCount isArchived primaryLanguage { name } }
+      nodes {
+        name description stargazerCount isArchived primaryLanguage { name }
+        languages(first: 10, orderBy: {field: SIZE, direction: DESC}) { edges { size node { name } } }
+      }
     }
   }
   search(query: $prs, type: ISSUE, first: 100) {
-    nodes { ... on PullRequest { state merged repository { name owner { login } stargazerCount isPrivate } } }
+    nodes { ... on PullRequest { title repository { name owner { login avatarUrl } stargazerCount isPrivate } } }
   }
 }"""
 
@@ -53,20 +62,27 @@ class Contribution:
     owner: str
     name: str
     stars: int
-    merged: bool            # at least one pull request merged
-    open: bool              # at least one still in review
+    merged: int             # my pull requests merged into it
+    title: str              # the newest of them
+    avatar: str             # the owner's avatar, as a data URI
 
 
 @dataclass(frozen=True)
 class Profile:
     name: str
-    tagline: str
+    handle: str             # the user@host line of the card
+    builds: str
+    studying: str
+    uptime: str             # time since joining GitHub
+    avatar: Image.Image
     contributions: int      # all time, as the yearly totals on the profile
     pull_requests: int
     repositories: int
+    stars: int              # stargazers of my public repositories
+    merged: int             # my pull requests merged into other people's projects
+    languages: list         # the three with the most code
     projects: list
     open_source: list
-    open_source_stars: int
 
 
 def query(token: str, text: str, **variables) -> dict:
@@ -101,38 +117,67 @@ def pick_projects(repos: list, login: str, cfg: dict) -> list:
     return chosen
 
 
+def data_uri(url: str, size: int = 40) -> str:
+    response = requests.get(url, params={"s": size}, timeout=30)
+    response.raise_for_status()
+    kind = response.headers.get("content-type", "image/png").split(";")[0]
+    return f"data:{kind};base64,{base64.b64encode(response.content).decode()}"
+
+
 def pick_open_source(pulls: list, cfg: dict) -> list:
-    """Other people's public projects I opened pull requests to, merged or in review, biggest first."""
+    """Other people's public projects that merged my pull requests, biggest first. `pulls` is newest first."""
     skipped = {name.lower() for name in cfg.get("exclude", [])}
     found = {}
     for pr in pulls:
         repo = pr.get("repository")
-        if not repo or repo["isPrivate"] or (pr["state"] == "CLOSED" and not pr["merged"]):
+        if not repo or repo["isPrivate"]:
             continue
         full = f"{repo['owner']['login']}/{repo['name']}"
         if full.lower() in skipped or repo["stargazerCount"] < cfg.get("min_stars", 100):
             continue
-        merged, still_open, _ = found.get(full, (False, False, repo))
-        found[full] = (merged or pr["merged"], still_open or pr["state"] == "OPEN", repo)
-    out = [Contribution(repo["owner"]["login"], repo["name"], repo["stargazerCount"], merged, still_open)
-           for merged, still_open, repo in found.values()]
-    out.sort(key=lambda c: -c.stars)
-    return out[:cfg.get("limit", 8)]
+        count, title, _ = found.get(full, (0, pr["title"], repo))
+        found[full] = (count + 1, title, repo)
+    chosen = sorted(found.values(), key=lambda entry: -entry[2]["stargazerCount"])[:cfg.get("limit", 8)]
+    return [Contribution(repo["owner"]["login"], repo["name"], repo["stargazerCount"], count, title,
+                         data_uri(repo["owner"]["avatarUrl"]))
+            for count, title, repo in chosen]
+
+
+def uptime(joined: date, today: date) -> str:
+    months = (today.year - joined.year) * 12 + today.month - joined.month - (today.day < joined.day)
+    years, months = divmod(months, 12)
+    parts = [f"{years} year{'s' * (years != 1)}"] if years else []
+    if months:
+        parts.append(f"{months} month{'s' * (months != 1)}")
+    return ", ".join(parts) or "new"
+
+
+def top_languages(repos: list, ignore: list) -> list:
+    sizes = Counter()
+    for repo in repos:
+        for edge in repo["languages"]["edges"]:
+            sizes[edge["node"]["name"]] += edge["size"]
+    return [name for name, _ in sizes.most_common() if name not in ignore][:3]
 
 
 def fetch(cfg: dict, token: str) -> Profile:
     login = cfg["username"]
-    data = query(token, QUERY, login=login, prs=f"is:pr author:{login} -user:{login}")
+    data = query(token, QUERY, login=login, prs=f"is:pr is:merged author:{login} -user:{login} sort:created-desc")
     user = data["user"]
+    repos = user["repositories"]["nodes"]
     found = pick_open_source(data["search"]["nodes"], cfg.get("open_source", {}))
     return Profile(
-        name=cfg["name"], tagline=cfg["tagline"],
+        name=cfg["name"], handle=cfg["handle"], builds=cfg["builds"], studying=cfg["studying"],
+        uptime=uptime(date.fromisoformat(user["createdAt"][:10]), date.today()),
+        avatar=dither.avatar(user["avatarUrl"]),
         contributions=contributions(token, login, user["contributionsCollection"]["contributionYears"]),
         pull_requests=user["pullRequests"]["totalCount"],
         repositories=user["repositories"]["totalCount"],
-        projects=pick_projects(user["repositories"]["nodes"], login, cfg.get("projects", {})),
+        stars=sum(repo["stargazerCount"] for repo in repos),
+        merged=sum(c.merged for c in found),
+        languages=top_languages(repos, cfg.get("ignore_languages", [])),
+        projects=pick_projects(repos, login, cfg.get("projects", {})),
         open_source=found,
-        open_source_stars=sum(c.stars for c in found),
     )
 
 
@@ -141,9 +186,11 @@ def main() -> None:
     profile = fetch(cfg, os.environ["GITHUB_TOKEN"])
     out = Path(os.environ.get("OUT_DIR", "dist"))
     out.mkdir(parents=True, exist_ok=True)
-    for name, draw in (("header", plates.header), ("projects", plates.projects), ("open-source", plates.open_source)):
-        (out / f"{name}.svg").write_text(draw(profile), encoding="utf-8")
-        (out / f"{name}-mobile.svg").write_text(draw(profile, mobile=True), encoding="utf-8")
+    for name, draw in (("hero", cards.hero), ("work", cards.work)):
+        for theme in ("dark", "light"):
+            for mobile in (False, True):
+                suffix = ("-mobile" if mobile else "") + ("-light" if theme == "light" else "")
+                (out / f"{name}{suffix}.svg").write_text(draw(profile, theme, mobile), encoding="utf-8")
     print(f"Drew {len(profile.projects)} projects and {len(profile.open_source)} open-source projects into {out}/")
 
 

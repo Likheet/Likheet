@@ -1,7 +1,10 @@
-# Settings for build.py, which draws the profile's images every day from live GitHub data.
+# Settings for build.py, which draws the profile's images every hour from live GitHub data.
 username: Likheet
 name: "Likheet Shetty"
-tagline: "Native apps, AI tools and browser extensions"
+handle: "likheet@sydney"
+builds: "native apps, AI tools, browser extensions"
+studying: "Master of IT, UNSW Sydney"
+ignore_languages: ["HTML", "CSS", "Shell", "Makefile", "PowerShell", "Batchfile", "Jupyter Notebook"]
 
 projects:
   limit: 5               # my most recently pushed public repositories, after the ones under `first`
@@ -22,9 +25,9 @@ projects:
     - todo-list
     - dictionary
 
-open_source:
-  min_stars: 100         # leave out pull requests to smaller projects
-  limit: 8               # one mountain per project, biggest first
+open_source:            # pull requests merged into other people's projects
+  min_stars: 100         # leave out smaller projects
+  limit: 8               # biggest first
   exclude:
     - is-a-dev/register                       # domain registration, not code
     - firstcontributions/first-contributions  # a tutorial
